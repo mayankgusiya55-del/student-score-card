@@ -1,8 +1,8 @@
-// Catches errors thrown/passed via next(err) from anywhere in the app
+
 function errorHandler(err, req, res, next) {
   console.error(err.stack || err.message);
 
-  // Handle known MySQL errors with friendlier messages
+
   if (err.code === 'ER_DUP_ENTRY') {
     return res.status(409).json({
       success: false,
@@ -24,12 +24,12 @@ function errorHandler(err, req, res, next) {
   });
 }
 
-// Wraps async route handlers so thrown errors are forwarded to errorHandler
+
 const asyncHandler = (fn) => (req, res, next) => {
   Promise.resolve(fn(req, res, next)).catch(next);
 };
 
-// 404 handler for unknown routes
+
 function notFound(req, res, next) {
   res.status(404).json({ success: false, message: `Route ${req.originalUrl} not found` });
 }
