@@ -1,6 +1,6 @@
 const pool = require('../config/db');
 
-// GET /api/students
+
 async function getStudents(req, res) {
   const [rows] = await pool.query(
     'SELECT id, name, roll_no, class, created_at FROM students ORDER BY created_at DESC'
@@ -8,7 +8,7 @@ async function getStudents(req, res) {
   res.json({ success: true, data: rows });
 }
 
-// GET /api/students/:id
+
 async function getStudentById(req, res) {
   const { id } = req.params;
   const [rows] = await pool.query('SELECT * FROM students WHERE id = ?', [id]);
@@ -18,7 +18,6 @@ async function getStudentById(req, res) {
   res.json({ success: true, data: rows[0] });
 }
 
-// POST /api/students
 async function createStudent(req, res) {
   const { name, roll_no, class: studentClass } = req.body;
 
@@ -36,7 +35,7 @@ async function createStudent(req, res) {
   res.status(201).json({ success: true, message: 'Student added successfully', data: rows[0] });
 }
 
-// GET /api/students/:id/result — full report-card style result
+
 async function getStudentResult(req, res) {
   const { id } = req.params;
 
