@@ -1,7 +1,6 @@
 const pool = require('../config/db');
 
-// POST /api/marks — submit marks for a student across all subjects
-// Body: { student_id, marks: [{ subject_id, marks_obtained }, ...] }
+
 async function submitMarks(req, res) {
   const { student_id, marks } = req.body;
 
