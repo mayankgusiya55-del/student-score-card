@@ -1,6 +1,5 @@
 const { body, param, validationResult } = require('express-validator');
 
-// Runs after the *ValidationRules array and turns errors into a 400 response
 function validate(req, res, next) {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
